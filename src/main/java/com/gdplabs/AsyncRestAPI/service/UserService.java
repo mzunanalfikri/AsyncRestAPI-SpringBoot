@@ -44,7 +44,7 @@ public class UserService {
         logger.info("saving list of users of size {}" , users.size(), ". Thread work : " + Thread.currentThread().getName());
         repository.saveAll(users);
         long end = System.currentTimeMillis();
-        logger.info("Total time to save : {}", (start-end));
+        logger.info("Total time to save : {}", (end - start));
         return CompletableFuture.completedFuture(users);
     }
 
@@ -65,7 +65,6 @@ public class UserService {
                     user.setCompany(data[3]);
                     users.add(user);
                 }
-                System.out.println("parse csv done");
                 return users;
             }
         } catch (final IOException e){
